@@ -1,0 +1,35 @@
+{
+	"name": "Hudi Workspace",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+	"overrideCommand": false,
+	"forwardPorts": [8888, 4040],
+	"portsAttributes": {
+		"8888": {
+			"label": "Notebook",
+			"requireLocalPort": true,
+			"onAutoForward": "ignore"
+		},
+		"4040": {
+			"label": "Spark",
+			"requireLocalPort": true,
+			"onAutoForward": "ignore"
+		}
+	},
+	"containerEnv": {
+		"JUPYTER_CONFIG_DIR": "/workspaces/workspace-lakehouse/delta-lake/.jupyter"
+	},
+	"settings": {
+    	"python.pythonPath": "/opt/conda/bin/python",
+		"python.analysis.extraPaths": [
+			"/opt/conda/lib/python3.9/site-packages"
+		]
+	},
+	"extensions": [
+		"ms-python.python",
+		"ms-toolsai.jupyter"
+	],
+	"postCreateCommand": ".devcontainer/postCreateCommand.sh",
+	"remoteUser": "jovyan"
+}
